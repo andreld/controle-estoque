@@ -3,7 +3,9 @@ package com.andre.estoque.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,8 +19,8 @@ public class Filial {
 
 	private String nome;
 	
-//	@OneToMany
-//	private List<Estoque> estoque = new ArrayList<Estoque>();
+	@OneToMany(mappedBy="filial", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private List<Estoque> estoque = new ArrayList<Estoque>();
 	
 	public Filial() {
 		super();
@@ -45,13 +47,13 @@ public class Filial {
 		this.nome = nome;
 	}
 
-//	public List<Estoque> getEstoque() {
-//		return estoque;
-//	}
-//
-//	public void setEstoque(List<Estoque> estoque) {
-//		this.estoque = estoque;
-//	}
+	public List<Estoque> getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(List<Estoque> estoque) {
+		this.estoque = estoque;
+	}
 
 	@Override
 	public int hashCode() {

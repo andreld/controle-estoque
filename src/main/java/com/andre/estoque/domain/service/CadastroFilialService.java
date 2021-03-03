@@ -20,7 +20,7 @@ public class CadastroFilialService {
 		Filial filialNomeExistente = filialRepository.findByNome(filial.getNome());
 		
 		if(filialNomeExistente != null) {
-			throw new NegocioException("Já existe uma filial com este nome");
+			throw new NegocioException("Já existe uma filial com este nome.");
 		}
 		
 		return filialRepository.save(filial);

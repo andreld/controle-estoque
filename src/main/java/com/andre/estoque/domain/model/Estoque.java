@@ -4,8 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;;
 
 @Entity
 public class Estoque {
@@ -14,9 +15,10 @@ public class Estoque {
 	private Long id;
 
 	@ManyToOne
+	@JoinColumn(name="filial_id")
 	private Filial filial;
-
-	@OneToOne
+	
+	@ManyToOne
 	private Produto produto;
 
 	private Long quantidade;
@@ -36,6 +38,14 @@ public class Estoque {
 	public void setFilial(Filial filial) {
 		this.filial = filial;
 	}
+
+//	public Produto getProduto() {
+//		return produto;
+//	}
+//
+//	public void setProduto(Produto produto) {
+//		this.produto = produto;
+//	}
 
 	public Produto getProduto() {
 		return produto;
