@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.andre.estoque.domain.model.Produto;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
+public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 	List<Produto> findByDescricao(String descricao);
 	Produto findByCodigoBarras(String codigoBarras);
 	List<Produto> findByDescricaoContainingIgnoreCase(String descricao);

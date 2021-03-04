@@ -27,13 +27,13 @@ public class CadastroFilialService {
 		
 	}
 	
-	public Optional<Filial> buscar(Long id) {
+	public Optional<Filial> buscar(int id) {
 		
 		return filialRepository.findById(id);
 		
 	}
 	
-	public boolean existeFilialComId(Long id) {
+	public boolean existeFilialComId(int id) {
 		return filialRepository.existsById(id);
 	}
 	
@@ -42,7 +42,7 @@ public class CadastroFilialService {
 		return filialRepository.findAll();
 	}
 	
-	public void excluir(Long id) {
+	public void excluir(int id) {
 		filialRepository.deleteById(id);
 	}
 }

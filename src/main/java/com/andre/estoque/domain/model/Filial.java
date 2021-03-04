@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 public class Filial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	private String nome;
 	
@@ -31,11 +31,11 @@ public class Filial {
 		this.nome = nome;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -59,7 +59,7 @@ public class Filial {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -72,10 +72,7 @@ public class Filial {
 		if (getClass() != obj.getClass())
 			return false;
 		Filial other = (Filial) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}

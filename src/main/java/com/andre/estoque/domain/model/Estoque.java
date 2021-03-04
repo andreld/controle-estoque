@@ -6,13 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;;
+
+import com.andre.estoque.domain.exception.NegocioException;;
 
 @Entity
 public class Estoque {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	@ManyToOne
 	@JoinColumn(name="filial_id")
@@ -21,13 +22,35 @@ public class Estoque {
 	@ManyToOne
 	private Produto produto;
 
-	private Long quantidade;
+	private int quantidade;
+	
+	public Estoque() {
+		
+	}
 
-	public Long getId() {
+	public Estoque(Filial filial, Produto produto) {
+		super();
+		this.filial = filial;
+		this.produto = produto;
+		this.quantidade = 0;
+	}
+	
+	public Estoque(Filial filial, Produto produto, int quantidade) {
+		super();
+		this.filial = filial;
+		this.produto = produto;
+		if(quantidade >= 0) {
+			this.quantidade = quantidade;
+		}else{
+			throw new NegocioException("Quantidade não pode ser menor que zero");
+		}
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -39,14 +62,6 @@ public class Estoque {
 		this.filial = filial;
 	}
 
-//	public Produto getProduto() {
-//		return produto;
-//	}
-//
-//	public void setProduto(Produto produto) {
-//		this.produto = produto;
-//	}
-
 	public Produto getProduto() {
 		return produto;
 	}
@@ -55,19 +70,36 @@ public class Estoque {
 		this.produto = produto;
 	}
 
-	public Long getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Long quantidade) {
-		this.quantidade = quantidade;
+	public void setQuantidade(int quantidade) {
+		if(quantidade >= 0) {
+			this.quantidade = quantidade;
+		}else{
+			throw new NegocioException("Quantidade não pode ser menor que zero");
+		}
+	}
+	
+	public int adicionar(int quantidadeAdicionada) {
+		this.quantidade += quantidadeAdicionada;
+		return this.quantidade;
+	}
+	
+	public int subtrair(int quantidadeRemovida) {
+		if(quantidadeRemovida > this.quantidade) {
+			throw new NegocioException("A quantidade solicitada é maior que o total atual no estoque.");
+		}
+		this.quantidade -= quantidadeRemovida;
+		return this.quantidade;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -80,10 +112,7 @@ public class Estoque {
 		if (getClass() != obj.getClass())
 			return false;
 		Estoque other = (Estoque) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}

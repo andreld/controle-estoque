@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.andre.estoque.domain.model.Filial;
 
 @Repository
-public interface FilialRepository extends JpaRepository<Filial, Long>{
+public interface FilialRepository extends JpaRepository<Filial, Integer>{
 	public Filial findByNome(String nome);
 }

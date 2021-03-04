@@ -25,7 +25,7 @@ public class CadastroProdutoService {
 		return produtoRepository.save(produto);
 	}
 	
-	public Optional<Produto> buscar(Long id) {
+	public Optional<Produto> buscar(int id) {
 		return produtoRepository.findById(id);
 	}
 	
@@ -34,7 +34,7 @@ public class CadastroProdutoService {
 		return produtoRepository.findByDescricaoContainingIgnoreCase(descricao);	
 	}
 	
-	public boolean existeProdutoComId(Long produtoId) {
+	public boolean existeProdutoComId(int produtoId) {
 		return produtoRepository.existsById(produtoId);
 	}
 	
@@ -42,7 +42,7 @@ public class CadastroProdutoService {
 		return produtoRepository.findAll();
 	}
 	
-	public void excluir(Long produtoId) {
+	public void excluir(int produtoId) {
 		produtoRepository.deleteById(produtoId);
 	}
 

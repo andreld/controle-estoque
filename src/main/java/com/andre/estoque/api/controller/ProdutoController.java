@@ -46,7 +46,7 @@ public class ProdutoController {
 //	}
 	
 	@GetMapping("/{produtoId}")
-	public ResponseEntity<ProdutoDto> buscar(@PathVariable Long produtoId) {
+	public ResponseEntity<ProdutoDto> buscar(@PathVariable int produtoId) {
 		Optional<Produto> produto = cadastroProdutoService.buscar(produtoId);
 		if(!produto.isPresent()) {
 			return ResponseEntity.notFound().build();
@@ -61,7 +61,7 @@ public class ProdutoController {
 	}
 	
 	@PutMapping("/{produtoId}")
-	public ResponseEntity<ProdutoDto> alterar(@Valid @RequestBody ProdutoInput produtoInput, Long produtoId) {
+	public ResponseEntity<ProdutoDto> alterar(@Valid @RequestBody ProdutoInput produtoInput, int produtoId) {
 		if(cadastroProdutoService.existeProdutoComId(produtoId)) {
 			return ResponseEntity.notFound().build();
 		}

@@ -34,7 +34,7 @@ public class FilialController {
 	ModelMapper modelMapper;
 	
 	@GetMapping("/{filialId}")
-	ResponseEntity<FilialDto> buscar(@PathVariable Long filialId) {
+	ResponseEntity<FilialDto> buscar(@PathVariable int filialId) {
 		//retornar-se um ResponseEntity sempre que recebemos um pathvariable
 		//para devolvermos códigos HTTP de acordo com a resposta que devolveremos
 		Optional<Filial> filial = cadastroFilialService.buscar(filialId);
@@ -60,7 +60,7 @@ public class FilialController {
 	
 	@PutMapping("/{filialId}")
 	public ResponseEntity<FilialDto> alterar(@Valid @RequestBody FilialInput filialInput, 
-			@PathVariable Long filialId) {
+			@PathVariable int filialId) {
 		if(!cadastroFilialService.existeFilialComId(filialId)) {
 			return ResponseEntity.notFound().build();
 		}
@@ -74,7 +74,7 @@ public class FilialController {
 	}
 	
 	@DeleteMapping("/{filialId}")
-	public ResponseEntity<Void> excluir(@PathVariable Long filialId) {
+	public ResponseEntity<Void> excluir(@PathVariable int filialId) {
 		if(!cadastroFilialService.existeFilialComId(filialId)) {
 			return ResponseEntity.notFound().build();
 		}
