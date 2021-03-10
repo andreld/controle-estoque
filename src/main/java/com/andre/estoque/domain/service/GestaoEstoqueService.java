@@ -1,5 +1,7 @@
 package com.andre.estoque.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +41,11 @@ public class GestaoEstoqueService {
 		
 		return estoqueRepository.save(estoque);
 	}
+
+	public List<Estoque> buscarPorFilial(int filialId) {
+		Filial filial = new Filial();
+		filial.setId(filialId);
+		return estoqueRepository.findByFilial(filial);
+	}
+	
 }

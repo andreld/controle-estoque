@@ -23,7 +23,7 @@ import com.andre.estoque.api.input.ProdutoInput;
 import com.andre.estoque.domain.model.Produto;
 import com.andre.estoque.domain.service.CadastroProdutoService;
 
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 @RestController
 public class ProdutoController {
 	

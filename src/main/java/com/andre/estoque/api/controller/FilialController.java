@@ -23,7 +23,7 @@ import com.andre.estoque.api.input.FilialInput;
 import com.andre.estoque.domain.model.Filial;
 import com.andre.estoque.domain.service.CadastroFilialService;
 
-@RequestMapping("/filial")
+@RequestMapping("/filiais")
 @RestController //@Controller + @RequestBody
 public class FilialController {
 	
